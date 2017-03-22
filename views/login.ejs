@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>InnoBook</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Favicon and touch icons -->
+
+    <link rel="shortcut icon" href="assets/ico/fav.png">
+</head>
+
+<body>
+    <!-- Top content -->
+    <div class="top-content">
+        <div class="logo">
+            <img src="assets/ico/logowhite.png">
+        </div>
+
+        <!-- Body content -->
+
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7 text">
+                        <h1><strong>Innobook</strong> Login Form</h1>
+                        <div class="description">
+                            <p>
+                                Login here to explore our Innobook Social networking site..!
+                            </p>
+                        </div>
+                        <div class="top-big-link">
+                            <a class="btn btn-link-2" href="/register">Sign Up</a>
+                            <a class="btn btn-link-1" href="/login">Sign In</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>Sign In </h3>
+                                <p>Fill in the form below to get instant access:</p>
+                                <% if(message){ %>
+		                        <p class="error"><%=message%></p>
+		                        <%}%>
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-pencil"></i>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <form role="form" action="/login" method="post" class="registration-form">
+
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-email">Email</label>
+                                    <input type="email" name="email" placeholder="Email..." class="form-email form-control" id="form-email">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-Password">Password</label>
+                                    <input type="password" name="pwd" placeholder="Password..." class="form-last-name form-control">
+                                </div>
+
+                                <button type="submit" class="btn">Sign In!</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Javascript -->
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.backstretch.min.js"></script>
+    <script src="assets/js/retina-1.1.0.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
+
+
+</body>
+
+
+</html>

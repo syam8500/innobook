@@ -1,0 +1,7 @@
+.friend-main, .friend-img, .friend-name { float: left;}
+.friend-name {     
+    padding: 15px 0px 15px 10px;
+    color: #fff;}
+.friend-main { background-color:rgba(25, 185, 231, 0.19);;}
+.friends-list .col-md-6 { width: 48% !important; margin: 1% !important;}
+.friends-list { padding-top: 25px;}

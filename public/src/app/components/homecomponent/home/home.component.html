@@ -1,0 +1,37 @@
+    <style>
+    	.active{
+    		background-color: #19b9e7;
+    	}
+    </style>
+    <!-- Top content -->
+    <div class="top-content">
+        <div class="logo">
+            <img src="assets/ico/logowhite.png">
+        </div>
+
+        <!-- Body content -->
+
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7 text">
+                        <h1><strong>Welcome to InnoBook</strong></h1>
+                        <!-- <div class="description">
+                            <p>
+                                Login here to explore our InnoBook Social networking site..!
+                            </p>
+                        </div> -->
+                        <div class="top-big-link">
+                            <a class="btn btn-link-2" routerLinkActive="active" [routerLink]="['/signup']">Sign Up</a>
+                            <a class="btn btn-link-1" routerLinkActive="active" [routerLink]="['/signin']">Sign In</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 form-box">
+                        <!--<img src="../../../../../assets/ico/saroj.jpg">-->
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

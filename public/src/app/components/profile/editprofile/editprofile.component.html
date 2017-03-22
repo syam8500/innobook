@@ -1,0 +1,116 @@
+                <div class="profile-info">
+
+           <!-- update info -->
+
+                <div class="panel panel-info post animated fadeInUp" *ngIf="profile">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Edit info</h3>
+                    </div>
+                    <div class="panel-body editform-main">
+                        <div class="form-group">
+                        <label class="col-md-3 control-label">First name</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" [(ngModel)]='profile.firstName' >
+                        </div>
+                        </div>
+                        <div class="form-group">
+                        <label class="col-md-3 control-label">Last name</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" [(ngModel)]='profile.lastName'>
+                        </div>
+                        </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Email</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" [(ngModel)]='profile.Email'>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Description</label>
+                        <div class="col-md-8">
+                            <textarea class="form-control" type="text" [(ngModel)]='profile.Description'></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Mobile</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="tel" [(ngModel)]='profile.Mobile' >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Date of birth</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="date" [(ngModel)]="profile.dob">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Hobbies</label>
+                        <div class="col-md-8">
+                            <textarea class="form-control" type="text" [(ngModel)]="profile.Hobbies"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-info" (click)="saveProfile()">Save Changes</button>
+                    </div>
+                    </div>
+                </div><!-- end update info-->
+
+           <!-- update info -->
+
+            <div class="panel panel-info post panel-shadow editform-main">
+
+              <div class="panel-heading">
+
+                <h3 class="panel-title">Change password</h3>
+
+              </div>
+
+              <div class="panel-body">
+                <div class="form-group">
+
+                  <label class="col-md-4 control-label">Current password</label>
+
+                  <div class="col-md-7">
+
+                    <input class="form-control" type="text" [(ngModel)]="password.CurrentPassword">
+
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+
+                  <label class="col-md-4 control-label">New password</label>
+
+                  <div class="col-md-7">
+
+                    <input class="form-control" type="text" [(ngModel)]="password.NewPassword">
+
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+
+                  <label class="col-md-4 control-label">Confirm password</label>
+
+                  <div class="col-md-7">
+
+                    <input class="form-control" type="text" [(ngModel)]="password.ConformPassword">
+
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+
+                  <button type="submit" (click) = "ChangePassword()" class="btn btn-info">Save Changes</button>
+
+                </div>
+
+              </div>
+
+            </div>

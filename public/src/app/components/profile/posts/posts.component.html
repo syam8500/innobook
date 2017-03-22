@@ -1,0 +1,40 @@
+<div class="timeline-main">
+    <div class="profile-info animated fadeInRight">
+      <div class="row text-center cover-container col-md-22 hidden">
+    	<a href=""><img src="img/user.jpg">	</a>
+        <h1 class="profile-name">Hillary McBrewk</h1>
+        <p class="user-text">sharing awesome ideas with your friends, you can grow, grow fast</p>
+    </div>
+	<!--Post Section-->
+	<div class="panel">
+	  <form class="ng-pristine ng-valid">
+	      <textarea placeholder="Whats in your mind today?" rows="2" class="form-control input-lg p-text-area post-textarea" name="post.text" [(ngModel)] = "post.text"></textarea>
+	  </form>
+	  <div class="panel-footer">
+	      <button class="btn btn-info pull-right post-btn" (click)="func(post)">Post</button>
+	      <ul class="nav nav-pills">
+	          <li><a href=""><i class="fa fa-map-marker"></i></a></li>
+	          <li><a href=""><i class="fa fa-camera"></i></a></li>
+	          <li><a href=""><i class=" fa fa-film"></i></a></li>
+	          <li><a href=""><i class="fa fa-microphone"></i></a></li>
+	      </ul>
+	  </div>
+	</div>
+    </div>
+    <!-- first post-->
+
+	<div class="panel panel-white post panel-shadow">
+	  <div class="post-heading">
+	      <div class="pull-left image">
+	          <img src="img/user.jpg" class="avatar" alt="user profile image">
+	      </div>
+	      <div class="pull-left meta"  *ngFor='let value of getposts'>
+	          <div class="title h5">
+	              <a href="" class="post-user-name">{{value.email}}</a>
+	              added a status
+	          </div>
+	          <h6 class="text-muted time">{{value.post}}</h6>
+	      </div>
+	  </div>
+	</div><!-- first post-->
+</div>

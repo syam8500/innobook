@@ -1,0 +1,110 @@
+
+<nav class="navbar navbar-default headermain">
+  <div class="container-fluid header-main">
+    <div class="navbar-header col-md-12">
+		<!--logo-->
+        <div class="col-md-4">
+            <div class="logo"><img src="../../../../../assets/ico/logowhite.png"></div>
+        </div>
+		<!--search bar-->
+        <div class="col-md-4" id="search-bar">
+             <!--<form class="navbar-form" role="search">-->
+             <div>
+               <label for="users"> </label>
+
+<div class="col-sm-8">
+<typeahead
+  [(ngModel)]="selected"
+  [list]="data"
+  [searchProperty]="'firstName'" [displayProperty]="'firstName'"
+  [maxSuggestions]="5"
+  (suggestionSelected)="Selected($event)"
+  placeholder="search user">
+</typeahead>
+
+</div>
+<div class="col-sm-4 col-sm-pull-1">
+			<!--<input name="users" id="users" type="text" placeholder="Search a friend" [(ngModel)]="selected" class="form-control">-->
+			<button type="button" class="btn btn-primary accept-btn btn-lg" (click)="findFriend()">Search</button>
+</div>   </div>
+                <ul id="search-ul">
+  					<li id="search-li"><a href="">Adele</a></li>
+  					<li id="search-li2"><a href="">Agnes</a></li>
+  					<li id="search-li3"><a href="">Billy</a></li>
+  					<li id="search-li4"><a href="">Bob</a></li>
+  					<li id="search-li5"><a href="">Calvin</a></li>
+  					<li id="search-li6"><a href="">Christina</a></li>
+  					<li id="search-li7"><a href="">Cindy</a></li>
+				</ul>
+
+
+            <!--</form>-->
+        </div>
+        <div class="col-md-4">
+            <ul class="nav navbar-nav navbar-right">
+				<!--Profile Indicator-->
+
+				<li class="frnds">
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><img src="../../../../../assets/ico/user.jpg">{{loggedinuser}}</button>
+						<ul class="dropdown-menu frndreq-dropdown logoutdropdown">
+							<li>
+								<div class="frndreq-main"><button ng-click="logOut()"><a href="">Logout</a></button></div>
+							</li>
+						</ul>
+                	</div>
+				</li>
+				<!--chat icon-->
+				<li class="chat-icon">
+					<i class="fa fa-comment fa-lg" aria-hidden="true" title="chat"></i>
+				</li>
+				<!--Friend Requests and Notifications-->
+				<li class="frnds">
+					<div class="dropdown">
+						<form>
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe"></i>Notifications</button>
+						</form>
+						<ul class="dropdown-menu frndreq-dropdown">
+						<li ng-repeat="request in friendrequests">
+							<div class="frndreq-main">
+								<a href=""><img src="img/user.jpg"></a>
+								<div class="frndreq-name">
+									<h5><a href=""></a></h5>
+									<div class="acceptreq">
+										<button class="btn btn-primary accept-btn" ng-click="acceptRequest(request.sent_by)">Accept Request</button>
+									</div>
+								</div>
+							</div>
+						</li>
+						<!-- <li>
+							<div class="frndreq-main">
+								<a href=""><img src="img/user.jpg"></a>
+								<div class="frndreq-name">
+									<h5><a href="">Tom Cruise</a></h5>
+									<div class="acceptreq">
+										<button class="btn btn-primary accept-btn">Accept Request</button>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="frndreq-main">
+								<a href=""><img src="img/user.jpg"></a>
+								<div class="frndreq-name">
+									<h5><a href="">Tom Cruise</a></h5>
+									<div class="acceptreq">
+										<button class="btn btn-primary accept-btn">Accept Request</button>
+									</div>
+								</div>
+							</div>
+						</li> -->
+
+						</ul>
+                	</div>
+				</li>
+			</ul>
+        </div>
+    </div>
+
+  </div>
+</nav>
