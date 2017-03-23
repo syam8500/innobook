@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {Routes,RouterModule} from '@angular/router';
 import { Typeahead } from 'ng2-typeahead';
+import { WindowRef } from './components/profile/chat/WindowRef';
 import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { SidebarComponent } from './components/profile/sidebar/sidebar.component
 import { PostsComponent } from './components/profile/posts/posts.component';
 import { EditprofileComponent } from './components/profile/editprofile/editprofile.component';
 import { NotfoundComponent } from './components/profile/notfound/notfound.component';
+import { ChatComponent } from './components/profile/chat/chat.component';
 import { AppService } from './app.service';
 import { searchService } from './app.search';
 import { FriendProfileComponent } from './components/profile/friend-profile/friend-profile.component';
@@ -35,6 +37,7 @@ import { FriendslistComponent } from './components/profile/friendslist/friendsli
     EditprofileComponent,
     NotfoundComponent,
     FriendProfileComponent,
+    ChatComponent,
     FriendslistComponent,Typeahead
   ],
   imports: [
@@ -43,7 +46,7 @@ import { FriendslistComponent } from './components/profile/friendslist/friendsli
     HttpModule,
     routing
   ],
-  providers: [AppService, searchService],
+  providers: [AppService, searchService,WindowRef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

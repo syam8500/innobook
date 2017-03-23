@@ -22,7 +22,7 @@ public firstName: string;
     this.firstName = selected ? selected.firstName : 'none';
 
   }
-  constructor( private searchService:AppService ,private router:Router,  private _route:ActivatedRoute) {
+  constructor( private searchService:AppService ,private router:Router,  private _route:ActivatedRoute,private signoutService:AppService) {
     this.data =[{
       email:'',
       firstName:""
@@ -69,5 +69,26 @@ this.data.push({
 
 
   }
+
+
+  logOut(){
+
+    this.signoutService.data = "";
+    this.signoutService.url = "http://localhost:3030/logOut";
+    this.signoutService.postService().subscribe(res =>{
+     this.data =  JSON.parse(res["_body"]);
+     if(this.data["success"]=="sucess"){
+        this.router.navigate(["signin"]);
+
+     }
+     else{
+       
+       this.router.navigate(["profile"]); 
+     }
+      console.log(res);
+
+      
+    })   
+  }  
 
 }

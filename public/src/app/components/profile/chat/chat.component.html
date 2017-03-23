@@ -1,0 +1,23 @@
+ <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
+
+  <div [ngClass]="'chat_box'" (window:resize)="onResize($event)">
+	<div [ngClass]="'chat_head'"  (click)="toggleHead()"> Chat Box</div>
+	<div [ngClass]="'chat_body'"> 
+	<div class="user_{{activeusers.name}}" [ngClass]="'user'" *ngFor="let activeusers of activeUsers" (click)="addChatPopup(activeusers)" > {{activeusers.name}} </div>
+	
+	</div>
+  </div>
+<div [ngClass]="'chat_popup'" *ngFor="let chatpopups of chatPopups">
+<div [ngClass]="'msg_box'" [style.right]="getStyle(chatpopups)">
+	<div  [ngClass]="'msg_head'" (click)="toggleChatHead(chatpopups)">{{chatpopups.name}}
+	<div  [ngClass]="'close'" (click)="close(chatpopups)">x</div>
+	</div>
+	<div  [ngClass]="'msg_wrap'" id="msg_wrap_{{chatpopups.name}}">
+		<div [ngClass]="'msg_body'" id="msg_body_{{chatpopups.name}}" #scrollMe>
+			<div [ngClass]="'msg_from'">Weclome {{chatpopups.name}} this is a from message	</div>
+			<div [ngClass]="'msg_to'">This one {{chatpopups.name}} is a to message</div>
+		</div>
+	<div [ngClass]="'msg_footer'"><textarea [ngClass]="'msg_input'" id="msg_input_{{chatpopups.name}}" rows="4" (keypress)="sendMsg($event,chatpopups)"></textarea></div>
+</div>
+</div>
+</div>

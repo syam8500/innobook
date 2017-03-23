@@ -28,7 +28,7 @@ this.signinService.url = "http://localhost:3030/login";
 this.signinService.postService().subscribe(res =>{
  this.data =  JSON.parse(res["_body"]);
  if(this.data["success"]=="sucess"){
-   this.router.navigate([""]);
+   this.router.navigate(["profile"]);
  }
  else{
    this.isTrue = true;

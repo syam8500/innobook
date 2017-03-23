@@ -1,6 +1,6 @@
 
 //module.exports = function(app){
-	
+	var emailTemp;
 	var bodyParser = require('body-parser');
 	var user_database = require('./connection.js');
 	var freiend_database = require('./requestSchema.js');
@@ -28,7 +28,8 @@ exports.insertUser = function(req, res){
 					profilePic:"",
                    description:"",
 				   dob:"",
-					hobbies:""
+					hobbies:"",
+					logged:"false"
 		        });
 				
 				userDetails.save(function(err, data){
@@ -65,6 +66,18 @@ exports.insertUser = function(req, res){
 
 }
 
+exports.getData = function(req, res){
+
+	
+	    UserRegister.find({}, function (err, data) {
+            if(err){throw err}
+            else{
+	            res.json({data:data});
+		    }
+
+		});	
+}
+
 exports.validateUser = function(req, res){
         username = req.body.email;
 		  var password = req.body.pwd;
@@ -83,6 +96,24 @@ exports.validateUser = function(req, res){
 			res.json({success: "sucess","username":username,"session":req.session});
 		   }
         });
+         UserRegister.findOne({email: req.body.email}, function (err, data) {
+            if(err){throw err}
+            else{console.log(data);	
+         //    var userDetails = new UserRegister({
+	        //     logged: true
+	        // });
+	        data.logged = "true";
+		    data.save(function (err,data) {
+		        if(err) {
+		            console.error('ERROR!'+err);
+		        }
+		        else{
+		        	console.log(data);
+		        }
+		    });
+		}
+
+		});		  
 }
 exports.getUserProfile = function(req,res){
 	var user = req.params.id;
@@ -340,6 +371,24 @@ exports.UpdateProfile = function(req,res){
 
 
 exports.logOut = function(req,res){
+ UserRegister.findOne({email: emailTemp}, function (err, data) {
+    if(err){throw err}
+    else{console.log(data);	
+ //    var userDetails = new UserRegister({
+    //     logged: true
+    // });
+    data.logged = "false";
+    data.save(function (err,data) {
+        if(err) {
+            console.error('ERROR!'+err);
+        }
+        else{
+        	console.log(data+"logged out");
+        }
+    });
+}
+
+});		
 delete req.sessionId;
 //   res.redirect('/login');
 res.json({message: "logOut"});

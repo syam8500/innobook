@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../app').app;
 var debug = require('debug')('innobook:server');
 var http = require('http');
 
@@ -12,19 +12,30 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3030');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
+var server = require('../app').server;
+var io = require('../app').io;
 
-var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
+io.listen(server);
+var people={};
+ io.sockets.on('connection', function(socket){
+   console.log('A user connected');
+   socket.on('joinChat', function(data){
+      console.log("user joined");
+      people[data.id] = socket.id;
+      socket.join(data.id);
+   });
+   socket.on('sendmsg', function(data){
+     console.log("sending messages"+data.message);
+      io.sockets.in(data.id).emit('msg', {msg: data.message,id :data.id,user:data.user});
+     
+   });  
+ });
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

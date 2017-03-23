@@ -18,5 +18,10 @@ router.post('/login', function(req, res) {
 router.post('/logOut',function(req,res){
     console.log("logOut");
     controller.logOut(req,res);
-})
+});
+
+router.post('/getData',function(req,res){
+    console.log("getting data");
+    controller.getData(req,res);
+});
 module.exports = router;

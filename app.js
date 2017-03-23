@@ -22,15 +22,20 @@ var posts = require('./routes/posts');
 var check = require('./routes/check');
 // initializing and configuring the Node/Express server
 var app = express();
-app.listen(3030,function(){
-  console.log('app listnening on port 3030');
-})
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+server.listen(3030);
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(function(req, res, next){
+  res.io = io;
+  next();
+});
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -83,4 +88,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = {app: app, server: server,io: io};
