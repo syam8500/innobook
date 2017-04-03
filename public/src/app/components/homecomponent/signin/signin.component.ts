@@ -26,13 +26,15 @@ signinuser(user){
 this.signinService.data = user;
 this.signinService.url = "http://localhost:3030/login";
 this.signinService.postService().subscribe(res =>{
- this.data =  JSON.parse(res["_body"]);
+  console.log(res.json());
+ this.data = res.json() ;
  if(this.data["success"]=="sucess"){
+     this.signinService.storeUserdata(this.data .token,this.data.user);
    this.router.navigate(["profile"]);
  }
  else{
    this.isTrue = true;
-  this.router.navigate(["signin"]); 
+  this.router.navigate(["signin"]);
  }
 })
 }

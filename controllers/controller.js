@@ -1,6 +1,7 @@
 
 //module.exports = function(app){
 	var emailTemp;
+	var jwt = require("jsonwebtoken");
 	var bodyParser = require('body-parser');
 	var user_database = require('./connection.js');
 	var freiend_database = require('./requestSchema.js');
@@ -93,7 +94,11 @@ exports.validateUser = function(req, res){
 		   }else{	
 			req.session.Id=docs[0].email;	   
 			console.log(req.session);
-			res.json({success: "sucess","username":username,"session":req.session});
+			var token=jwt.sign(docs[0],"123456", {
+                            expiresIn: 604800
+                        });
+						console.log(token);
+			res.json({success: "sucess","user":docs[0],"session":req.session, token: 'JWT ' + token,});
 		   }
         });
          UserRegister.findOne({email: req.body.email}, function (err, data) {
@@ -212,9 +217,11 @@ ress.json({message:"search user not present "});
 exports.insertRequest = function(req,res){
 	UserRegister.find({"_id" : req.params.id},function(err,docs){
     var email = docs[0].email;
-    console.log("data",docs);
-    console.log("email",email);
-    var data = {
+   // console.log("data",docs);
+    //console.log("email",email);
+	console.log('xxxxxxxxxx');
+	console.log(req.body);
+    var data ={
 			'sent_by':req.body.sender,
 			'sent_to':email,
 			'accept':0
@@ -229,8 +236,8 @@ exports.insertRequest = function(req,res){
 			res.json(err);
 		}
 		else{
-			console.log("success");
-			res.json({'mgs':'success'})
+			console.log(docs);
+			res.json({'mgs':'success',"data":data});
 		}
     });
 });
@@ -242,6 +249,7 @@ exports.acceptRequest = function(req,res){
 	// UserRegister.find({"_id" : req.params.id},function(err,docs){
     // var email = docs[0].email;
 	friendrequests.update({$and:[{'sent_to':req.body.username},{'sent_by':req.params.id}]},{$set:{'accept':1}},function(err,docs){
+		console.log(docs);
 		res.json({'message':'success'})
 	// });
 });

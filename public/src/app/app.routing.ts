@@ -13,6 +13,7 @@ import { EditprofileComponent } from './components/profile/editprofile/editprofi
 import { NotfoundComponent } from './components/profile/notfound/notfound.component';
 import { FriendProfileComponent } from './components/profile/friend-profile/friend-profile.component';
 import { FriendslistComponent } from './components/profile/friendslist/friendslist.component';
+import { AuthGuard } from './guards/auth.guard';
 const appRoutes: Routes=
 [
   { path:'', component: HomeComponent,
@@ -21,7 +22,7 @@ const appRoutes: Routes=
          { path: 'signup', component: SignupComponent }
        ]
   },
-  { path:'profile', component: ProfileComponent,
+  { path:'profile', component: ProfileComponent,canActivate:[AuthGuard],
        children : [
          { path: '',component : PostsComponent},
          { path: 'editprofile', component: EditprofileComponent },

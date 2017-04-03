@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +24,7 @@ import { AppService } from './app.service';
 import { searchService } from './app.search';
 import { FriendProfileComponent } from './components/profile/friend-profile/friend-profile.component';
 import { FriendslistComponent } from './components/profile/friendslist/friendslist.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,7 @@ import { FriendslistComponent } from './components/profile/friendslist/friendsli
     HttpModule,
     routing
   ],
-  providers: [AppService, searchService,WindowRef],
+  providers: [AppService, searchService,WindowRef,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,6 +13,7 @@ router.get('/', function(req, res) {
 
 router.post('/login', function(req, res) {
   if (!req.body) return res.sendStatus(400);
+
   controller.validateUser(req,res);
 });
 router.post('/logOut',function(req,res){
