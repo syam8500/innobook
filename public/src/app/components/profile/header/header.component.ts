@@ -10,6 +10,7 @@ import {DataToLowerCase} from "./header.interface";
 })
 export class HeaderComponent implements OnInit {
   data1:any;
+  
 public data :DataToLowerCase[];
  dataObj:any[];
  result:any[];
@@ -24,6 +25,7 @@ public firstName: string;
 
   }
   constructor( private searchService:AppService ,private router:Router,  private _route:ActivatedRoute,private signoutService:AppService) {
+   
     this.data =[{
       email:'',
       firstName:""
@@ -102,26 +104,26 @@ this.searchService.url="http://localhost:3030/userprofile/accept_request/58a6c2b
 
 
   logOut(){
+    
+    this.signoutService.data = "";
+    this.signoutService.url = "http://localhost:3030/logOut/"+JSON.parse(localStorage.getItem('user')).email;
+     this.signoutService.postService().subscribe(res =>{
+      this.data =  JSON.parse(res["_body"]);
+      if(this.data["success"]=="sucess"){
+         this.searchService.logout();
+         console.log('logout()');
+         this.router.navigate(["signin"]);
 
-    // this.signoutService.data = "";
-    // this.signoutService.url = "http://localhost:3030/logOut";
-    // this.signoutService.postService().subscribe(res =>{
-    //  this.data =  JSON.parse(res["_body"]);
-    //  if(this.data["success"]=="sucess"){
-    //     this.router.navigate(["signin"]);
-
-    //  }
-    //  else{
-
-    //    this.router.navigate(["profile"]);
-    //  }
-    //   console.log(res);
+      }
+      else{
+       
+       this.router.navigate(["profile"]);
+     }
 
 
-    // })
-    this.searchService.logout();
-    console.log('lagout()');
-     this.router.navigate(["signin"]);
+     })
+    
+    
   }
 
 }

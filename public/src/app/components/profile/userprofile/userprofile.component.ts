@@ -8,7 +8,10 @@ import {Router} from "@angular/router";
 })
 export class UserprofileComponent implements OnInit {
 getdetail;
-  constructor(private profile:AppService,private router:Router) { }
+loggedinuser:any;
+  constructor(private profile:AppService,private router:Router) {
+     this.loggedinuser = JSON.parse(localStorage.getItem('user')).firstName;
+   }
 
   ngOnInit() {
     this.profile.url="http://localhost:3030/userprofile";

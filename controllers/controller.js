@@ -379,7 +379,8 @@ exports.UpdateProfile = function(req,res){
 
 
 exports.logOut = function(req,res){
- UserRegister.findOne({email: emailTemp}, function (err, data) {
+	console.log(req.params.id);
+ UserRegister.findOne({email: req.params.id}, function (err, data) {
     if(err){throw err}
     else{console.log(data);	
  //    var userDetails = new UserRegister({

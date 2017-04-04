@@ -39,7 +39,7 @@ export class ChatComponent {
   }
 
   data:any;
-  loggedinuser:any="user"+Math.floor((Math.random() * 100) + 1);
+  loggedinuser:any=JSON.parse(localStorage.getItem('user')).firstName;
   flag:boolean=true;
   winWidth:number;
   allowedPopups:number;
@@ -61,10 +61,12 @@ export class ChatComponent {
     this.allowedPopups= Math.floor(this.winWidth/350);
     this.socket = io(this.url);
     console.log(this.loggedinuser);
+    this.socket.emit('joinChat', {id: this.loggedinuser, user: this.loggedinuser});
 
     this.socket.on('msg', (data) => {
-        
-       if(data.user != this.loggedinuser){
+       console.log(JSON.parse(localStorage.getItem('user')).email);
+       console.log(this.loggedinuser + "fddg" + data.user);
+       if(data.user == this.loggedinuser){
          if(jQuery(this.refObj).find('#msg_body_'+data.id).length == 0){
             this.addChatPopup({'name':data.id}); 
             this.socket.emit('sendmsg', {message: data.msg, user: data.user,id: data.id});
@@ -85,8 +87,10 @@ export class ChatComponent {
      this.data = this.data.data;
      for(var i=0;i<this.data.length;i++){
        if(this.data[i].logged == "true"){
-          this.activeUsers.push({"name":this.data[i].firstName});
-          this.socket.emit('joinChat', {id: this.data[i].firstName, user: this.data[i].firstName});   
+          if(this.data[i].email != JSON.parse(localStorage.getItem('user')).email){
+             this.activeUsers.push({"name":this.data[i].firstName});
+             this.socket.emit('joinChat', {id: this.data[i].firstName, user: this.data[i].firstName});   
+          }
         }
      }
       
@@ -188,7 +192,7 @@ export class ChatComponent {
           jQuery(this.refObj).find('.msg_to').last().clone().text(msg.val()).appendTo('#msg_body_'+chatMsg.name);
           this.message=msg.val();
           
-          this.socket.emit('sendmsg', {message: this.message, user: this.loggedinuser,id: chatMsg.name});
+          this.socket.emit('sendmsg', {message: this.message, user: chatMsg.name,id: this.loggedinuser});
        }
        msg.scrollTop(msg[0].scrollHeight);
        jQuery(this.refObj).find('#msg_input_'+chatMsg.name).val('');

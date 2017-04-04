@@ -39,8 +39,8 @@ storeUserdata(token,user){
   }
   logout(){
      this.authToken=null;
-    this.user=null;
-    localStorage.clear();
+     this.user=null;
+     localStorage.clear();
   }
  loggedIn(){
     return tokenNotExpired();

@@ -16,8 +16,8 @@ router.post('/login', function(req, res) {
 
   controller.validateUser(req,res);
 });
-router.post('/logOut',function(req,res){
-    console.log("logOut");
+router.post('/logOut/:id',function(req,res){
+    console.log("logOutOfApp");
     controller.logOut(req,res);
 });
 
